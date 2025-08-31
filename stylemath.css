@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  background: linear-gradient(135deg, #9ae2ff 0%, #2c22e2 50%, #af0be1 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Dekorasi bunga latar belakang */
+.flower-decoration {
+  position: absolute;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.flower-1 {
+  top: 10%;
+  left: 10%;
+  font-size: 4rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+.flower-2 {
+  top: 20%;
+  right: 15%;
+  font-size: 3rem;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.flower-3 {
+  bottom: 15%;
+  left: 20%;
+  font-size: 3.5rem;
+  animation: float 7s ease-in-out infinite;
+}
+
+.flower-4 {
+  bottom: 25%;
+  right: 10%;
+  font-size: 2.5rem;
+  animation: float 5s ease-in-out infinite reverse;
+}
+
+.flower-5 {
+  bottom: 35%;
+  right: 5%;
+  font-size: 2.5rem;
+  animation: float 5s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.calculator-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.calculator-container::before {
+  content: "🌸";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 2rem;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.calculator-container::after {
+  content: "🌺";
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 2rem;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+h1 {
+  text-align: center;
+  color: #d63333;
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.display {
+  width: 100%;
+  height: 80px;
+  font-size: 2rem;
+  text-align: right;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 3px solid #0f03fd;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+  color: #8b4513;
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.btn {
+  height: 60px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Playfair Display", serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-number {
+  background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
+  color: #8b4513;
+}
+
+.btn-number:hover {
+  background: linear-gradient(135deg, #ffb6c1, #ffa0b4);
+}
+
+.btn-operator {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+}
+
+.btn-operator:hover {
+  background: linear-gradient(135deg, #ff1493, #dc143c);
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  color: white;
+}
+
+.btn-clear:hover {
+  background: linear-gradient(135deg, #ee5a52, #dc3545);
+}
+
+.btn-equals {
+  background: linear-gradient(135deg, #32cd32, #228b22);
+  color: white;
+  grid-column: span 2;
+}
+
+.btn-equals:hover {
+  background: linear-gradient(135deg, #228b22, #006400);
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+@media (max-width: 480px) {
+  .calculator-container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .display {
+    height: 70px;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    height: 50px;
+    font-size: 1.1rem;
+  }
+}

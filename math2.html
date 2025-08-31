@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Seni Bunga</title>
+    <link rel="stylesheet" href="stylemath.css" />
+  </head>
+  <body>
+    <!-- Dekorasi bunga latar belakang -->
+    <div class="flower-decoration flower-1">🌸</div>
+    <div class="flower-decoration flower-2">🌺</div>
+    <div class="flower-decoration flower-3">🌻</div>
+    <div class="flower-decoration flower-4">🌷</div>
+    <div class="flower-decoration flower-5">🪻</div>
+
+    <div class="">
+      <h1>🌹 Kalkulator Seni 🌹</h1>
+
+      <input
+        type="text"
+        placeholder="0"
+        readonly
+        class="display"
+        id="display"
+      />
+
+      <div class="buttons">
+        <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+        <button class="btn btn-clear" onclick="deleteLast()">⌫</button>
+        <button class="btn btn-operator" onclick="appendToDisplay('/')">
+          /
+        </button>
+        <button class="btn btn-operator" onclick="appendToDisplay('x')">
+          ×
+        </button>
+
+        <button class="btn btn-number" onclick="appendToDisplay('7')">7</button>
+        <button class="btn btn-number" onclick="appendToDisplay('8')">8</button>
+        <button class="btn btn-number" onclick="appendToDisplay('9')">9</button>
+        <button class="btn btn-operator" onclick="appendToDisplay('-')">
+          -
+        </button>
+
+        <button class="btn btn-number" onclick="appendToDisplay('4')">4</button>
+        <button class="btn btn-number" onclick="appendToDisplay('5')">5</button>
+        <button class="btn btn-number" onclick="appendToDisplay('6')">6</button>
+        <button class="btn btn-operator" onclick="appendToDisplay('+')">
+          +
+        </button>
+
+        <button class="btn btn-number" onclick="appendToDisplay('1')">1</button>
+        <button class="btn btn-number" onclick="appendToDisplay('2')">2</button>
+        <button class="btn btn-number" onclick="appendToDisplay('3')">3</button>
+        <button
+          class="btn btn-number"
+          onclick="appendToDisplay('0')"
+          style="grid-row: span 2"
+        >
+          0
+        </button>
+
+        <button class="btn btn-number" onclick="appendToDisplay('.')">.</button>
+        <button class="btn btn-equals" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+      let currentInput = "";
+      let operator = "";
+      let previousInput = "";
+
+      function appendToDisplay(value) {
+        if (display.value === "0" && value !== ".") {
+          display.value = value;
+        } else {
+          display.value += value;
+        }
+      }
+
+      function clearDisplay() {
+        display.value = "";
+        currentInput = "";
+        operator = "";
+        previousInput = "";
+        display.placeholder = "0";
+      }
+
+      function deleteLast() {
+        display.value = display.value.slice(0, -1);
+        if (display.value === "") {
+          display.placeholder = "0";
+        }
+      }
+
+      function calculate() {
+        try {
+          let expression = display.value;
+          // Ganti × dengan * untuk evaluasi
+          expression = expression.replace("x", "*");
+
+          // Evaluasi ekspresi matematika
+          let result = eval(expression);
+
+          // Format hasil untuk menghindari angka desimal yang terlalu panjang
+          if (result % 1 !== 0) {
+            result = parseFloat(result.toFixed(8));
+          }
+
+          display.value = result;
+
+          // Animasi berhasil
+          display.style.background =
+            "linear-gradient(135deg, #98fb98, #90ee90)";
+          setTimeout(() => {
+            display.style.background =
+              "linear-gradient(135deg, #fff0f5, #ffe4e1)";
+          }, 500);
+        } catch (error) {
+          display.value = "Error";
+          display.style.background =
+            "linear-gradient(135deg, #ffcccb, #ffa0a0)";
+          setTimeout(() => {
+            display.style.background =
+              "linear-gradient(135deg, #fff0f5, #ffe4e1)";
+            clearDisplay();
+          }, 1500);
+        }
+      }
+
+      // Dukungan keyboard
+      document.addEventListener("keydown", function (event) {
+        const key = event.key;
+
+        if ((key >= "0" && key <= "9") || key === ".") {
+          appendToDisplay(key);
+        } else if (key === "+" || key === "-" || key === "/") {
+          appendToDisplay(key);
+        } else if (key === "*") {
+          appendToDisplay("*");
+        } else if (key === "Enter" || key === "=") {
+          event.preventDefault();
+          calculate();
+        } else if (key === "Escape" || key === "c" || key === "C") {
+          clearDisplay();
+        } else if (key === "Backspace") {
+          deleteLast();
+        }
+      });
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'976b950e576c87b4',t:'MTc1NjQ2NTYyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
